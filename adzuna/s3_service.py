@@ -3,6 +3,14 @@ from botocore.exceptions import NoCredentialsError
 
 
 def upload(local_file, s3_file):
+
+    # This function aims at uploading a file to s3
+    # @params
+    # local_file: the path to the file to upload
+    # s3_file: the destination path of the uploaded file
+    # @returns
+    # the pre-signed url of the uploaded file on s3
+
     s3 = boto3.client('s3')
     bucket_name = "jobs-analysis"
     try:

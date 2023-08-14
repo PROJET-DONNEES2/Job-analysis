@@ -16,6 +16,13 @@ def lambda_handler(event, context):
 
 
 def get_jobs():
+
+    # This function collects the jobs offers in adzuna's database
+    # @params
+    # any
+    # @returns
+    # Directly the response body from adzuna when getting the list of job offers
+
     url = "https://api.adzuna.com/v1/api/jobs/fr/search/10"
 
     response = requests.get(url)
@@ -26,7 +33,7 @@ def get_jobs():
 
         os.makedirs(temp_dir_path, exist_ok=True)  # Create the directory if it doesn't exist
 
-        # Obtenir la date actuelle au format YYYY-MM-DD_HH-MM-SS
+        # Get the actual date in the following format: YYYY-MM-DD_HH-MM-SS
         current_date = datetime.datetime.now()
         formatted_date = current_date.strftime('%Y-%m-%d_%H-%M-%S')
 
