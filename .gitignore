@@ -81,7 +81,8 @@ cmake-build-debug/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
-
+.idea/
+.aws-sam/
 # JIRA plugin
 atlassian-ide-plugin.xml
 
