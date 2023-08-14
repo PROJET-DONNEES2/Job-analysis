@@ -25,6 +25,26 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+            
+  AdzunaFunction: 
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: adzuna/
+      Handler: adzuna_handler.lambda_handler
+      Runtime: python3.10
+      Timeout: 60
+      Architectures:
+        - x86_64
+      Events:
+        GetItJobs:
+          Type: Api
+          Properties:
+            Path: /jobs
+            Method: get
+      Policies:
+        - S3CrudPolicy:
+            BucketName: job-analysis
+
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -39,3 +59,5 @@ Outputs:
   HelloWorldFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt HelloWorldFunctionRole.Arn
+  AdzunaFunction:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/jobs/"
